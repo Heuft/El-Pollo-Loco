@@ -26,6 +26,7 @@ class World {
     this.addObjectToMap(this.level.clouds);
     this.addObjectToMap(this.level.enemies);
     this.addObjectToMap(this.level.coins);
+    this.addObjectToMap(this.level.bottlebottom);
     this.ctx.translate(-this.camera_x, 0);
 
     let self = this;
