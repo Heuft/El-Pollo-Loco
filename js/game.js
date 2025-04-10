@@ -23,6 +23,9 @@ window.addEventListener("keydown", (e) => {
   if (e.keyCode == 40) {
     keyboard.Down = true;
   }
+  if (e.keyCode == 68) {
+    keyboard.D = true;
+  }
 });
 
 window.addEventListener("keyup", (e) => {
@@ -40,5 +43,8 @@ window.addEventListener("keyup", (e) => {
   }
   if (e.keyCode == 40) {
     keyboard.Down = false;
+  }
+  if (e.keyCode == 68) {
+    keyboard.D = false;
   }
 });
