@@ -5,6 +5,8 @@ class MovableObject extends DrawableObject {
   acceleration = 1.5;
   energy = 100;
   lastHit = 0;
+  minX = 500;
+  maxX = 3500;
 
   isColliding(mo) {
     return (
@@ -55,7 +57,7 @@ class MovableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 18;
+    this.speedY = 15;
   }
   playAnimation(images) {
     let i = this.currentImage % images.length;
