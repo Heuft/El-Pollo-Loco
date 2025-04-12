@@ -24,6 +24,7 @@ class World {
       this.checkCollision();
       this.checkThrowObjects();
       this.checkBottleCollision();
+      this.checkCoinCollision();
     }, 200);
   }
 
@@ -52,6 +53,18 @@ class World {
         //Sound
         this.character.getBottle();
         this.statusBarBottle.setPercent(this.character.statusbottle);
+        return false;
+      }
+      return true;
+    });
+  }
+
+  checkCoinCollision() {
+    this.level.coins = this.level.coins.filter((coins) => {
+      if (this.character.isColliding(coins)) {
+        //Sound
+        this.character.getCoin();
+        this.statusBarCoin.setPercent(this.character.statusCoin);
         return false;
       }
       return true;

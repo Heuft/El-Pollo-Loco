@@ -5,6 +5,7 @@ class MovableObject extends DrawableObject {
   acceleration = 1.5;
   energy = 100;
   statusbottle = 0;
+  statusCoin = 0;
   lastHit = 0;
   minX = 500;
   maxX = 3500;
@@ -31,6 +32,13 @@ class MovableObject extends DrawableObject {
     this.statusbottle += 21;
     if (this.statusbottle > 100) {
       this.statusbottle = 100;
+    }
+  }
+
+  getCoin() {
+    this.statusCoin += 21;
+    if (this.statusCoin > 100) {
+      this.statusCoin = 100;
     }
   }
 
