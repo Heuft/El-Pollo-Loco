@@ -23,6 +23,7 @@ class World {
     setInterval(() => {
       this.checkCollision();
       this.checkThrowObjects();
+      this.checkBottleCollision();
     }, 200);
   }
 
@@ -43,6 +44,21 @@ class World {
         this.statusBarHealth.setPercent(this.character.energy);
       }
     });
+  }
+
+  checkBottleCollision() {
+    this.level.bottlebottom = this.level.bottlebottom.filter((bottlebottom) => {
+      if (this.character.isColliding(bottlebottom)) {
+        //Sound
+        return false;
+      }
+      return true;
+    });
+  }
+
+  HideImage() {
+    var img = document.getElementById("myImageId");
+    img.style.visibility = "visible";
   }
 
   setWorld() {
