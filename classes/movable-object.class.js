@@ -4,6 +4,7 @@ class MovableObject extends DrawableObject {
   speedY = 0;
   acceleration = 1.5;
   energy = 100;
+  statusbottle = 0;
   lastHit = 0;
   minX = 500;
   maxX = 3500;
@@ -23,6 +24,13 @@ class MovableObject extends DrawableObject {
       this.energy = 0;
     } else {
       this.lastHit = new Date().getTime();
+    }
+  }
+
+  getBottle() {
+    this.statusbottle += 21;
+    if (this.statusbottle > 100) {
+      this.statusbottle = 100;
     }
   }
 

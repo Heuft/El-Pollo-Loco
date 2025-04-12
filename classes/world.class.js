@@ -5,9 +5,9 @@ class World {
   ctx;
   keyboard;
   camera_x = 0;
-  statusBarHealth = new StatusBar("health", 0);
-  statusBarCoin = new StatusBar("coin", 50);
-  statusBarBottle = new StatusBar("bottle", 100);
+  statusBarHealth = new StatusBar("health", 0, 100);
+  statusBarCoin = new StatusBar("coin", 50, 0);
+  statusBarBottle = new StatusBar("bottle", 100, 0);
   throwableObject = [];
 
   constructor(canvas, keyboard) {
@@ -50,15 +50,12 @@ class World {
     this.level.bottlebottom = this.level.bottlebottom.filter((bottlebottom) => {
       if (this.character.isColliding(bottlebottom)) {
         //Sound
+        this.character.getBottle();
+        this.statusBarBottle.setPercent(this.character.statusbottle);
         return false;
       }
       return true;
     });
-  }
-
-  HideImage() {
-    var img = document.getElementById("myImageId");
-    img.style.visibility = "visible";
   }
 
   setWorld() {
