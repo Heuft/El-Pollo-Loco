@@ -29,9 +29,16 @@ class MovableObject extends DrawableObject {
   }
 
   getBottle() {
-    this.statusbottle += 21;
+    this.statusbottle += 20;
     if (this.statusbottle > 100) {
       this.statusbottle = 100;
+    }
+  }
+
+  throwBottle() {
+    this.statusbottle -= 20;
+    if (this.statusbottle < 0) {
+      this.statusbottle = 0;
     }
   }
 
@@ -73,7 +80,7 @@ class MovableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 15;
+    this.speedY = 17;
   }
   playAnimation(images) {
     let i = this.currentImage % images.length;

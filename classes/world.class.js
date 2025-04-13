@@ -25,15 +25,18 @@ class World {
       this.checkThrowObjects();
       this.checkBottleCollision();
       this.checkCoinCollision();
+      this.checkEnemyTopCollision();
     }, 200);
   }
 
   checkThrowObjects() {
-    if (this.keyboard.D) {
+    if (this.keyboard.D && this.character.statusbottle > 19) {
       let bottle = new ThrowableObject(
         this.character.x + 100,
         this.character.y + 100
       );
+      this.character.throwBottle();
+      this.statusBarBottle.setPercent(this.character.statusbottle);
       this.throwableObject.push(bottle);
     }
   }
@@ -44,6 +47,25 @@ class World {
         this.character.hit();
         this.statusBarHealth.setPercent(this.character.energy);
       }
+    });
+  }
+
+  checkEnemyTopCollision() {
+    this.level.enemies = this.level.enemies.filter((enemy) => {
+      if (this.character.isColliding(enemy)) {
+        let isFalling = this.character.speedY < 0;
+
+        if (
+          this.character.isAboveGround() &&
+          isFalling &&
+          (enemy instanceof Chicken || enemy instanceof SmallChicken)
+        ) {
+          enemy.isDead();
+          this.character.speedY = +15;
+          return false;
+        }
+      }
+      return true;
     });
   }
 
