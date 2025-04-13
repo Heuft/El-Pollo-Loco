@@ -26,6 +26,7 @@ class World {
       this.checkBottleCollision();
       this.checkCoinCollision();
       this.checkEnemyTopCollision();
+      this.checkThrowBottleCollision();
     }, 200);
   }
 
@@ -61,7 +62,7 @@ class World {
           (enemy instanceof Chicken || enemy instanceof SmallChicken)
         ) {
           enemy.isDead();
-          this.character.speedY = +15;
+          this.character.speedY = +25;
           return false;
         }
       }
@@ -90,6 +91,16 @@ class World {
         return false;
       }
       return true;
+    });
+  }
+
+  checkThrowBottleCollision() {
+    this.throwableObject.forEach((bottle) => {
+      this.level.enemies.forEach((enemy) => {
+        if (bottle.isColliding(enemy)) {
+          enemy.hit();
+        }
+      });
     });
   }
 
@@ -132,7 +143,6 @@ class World {
       this.flipImage(mo);
     }
     mo.draw(this.ctx);
-    mo.drawFrame(this.ctx);
     if (mo.otherDirection) {
       this.flipImageBack(mo);
     }

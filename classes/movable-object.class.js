@@ -43,7 +43,7 @@ class MovableObject extends DrawableObject {
   }
 
   getCoin() {
-    this.statusCoin += 21;
+    this.statusCoin += 19;
     if (this.statusCoin > 100) {
       this.statusCoin = 100;
     }

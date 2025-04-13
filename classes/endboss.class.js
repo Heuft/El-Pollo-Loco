@@ -3,6 +3,12 @@ class Endboss extends MovableObject {
   width = 250;
   y = 50;
   Images_Walking = [
+    "../img/4_enemie_boss_chicken/1_walk/G1.png",
+    "../img/4_enemie_boss_chicken/1_walk/G2.png",
+    "../img/4_enemie_boss_chicken/1_walk/G3.png",
+    "../img/4_enemie_boss_chicken/1_walk/G4.png",
+  ];
+  Images_FirstContact = [
     "../img/4_enemie_boss_chicken/2_alert/G5.png",
     "../img/4_enemie_boss_chicken/2_alert/G6.png",
     "../img/4_enemie_boss_chicken/2_alert/G7.png",
@@ -12,16 +18,31 @@ class Endboss extends MovableObject {
     "../img/4_enemie_boss_chicken/2_alert/G11.png",
     "../img/4_enemie_boss_chicken/2_alert/G12.png",
   ];
-
+  hadFirstContact = false;
   constructor() {
     super().loadImage(this.Images_Walking[0]);
     this.loadImages(this.Images_Walking);
+    this.loadImages(this.Images_FirstContact);
     this.x = 4000;
+    this.speed = 2 + Math.random() * 0.75;
     this.animate();
   }
-  animate() {
+  animate(hadFirstContact) {
+    let i = 0;
     setInterval(() => {
-      this.playAnimation(this.Images_Walking);
+      if (i < 10) {
+        this.playAnimation(this.Images_FirstContact);
+      } else {
+        this.playAnimation(this.Images_Walking);
+      }
+      i++;
+      if (world.character.x > 3500 && !hadFirstContact) {
+        i = 0;
+        hadFirstContact = true;
+        setInterval(() => {
+          this.moveLeft();
+        }, 1000 / 60);
+      }
     }, 150);
   }
 }
