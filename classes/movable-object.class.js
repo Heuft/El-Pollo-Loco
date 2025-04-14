@@ -14,7 +14,7 @@ class MovableObject extends DrawableObject {
     return (
       this.x + this.width > mo.x &&
       this.y + this.height > mo.y &&
-      this.x < mo.x &&
+      this.x < mo.x + mo.width &&
       this.y < mo.y + mo.height
     );
   }
@@ -80,7 +80,9 @@ class MovableObject extends DrawableObject {
   }
 
   jump() {
-    this.speedY = 17;
+    if (this.statusCoin == 100) {
+      this.speedY = 34;
+    } else this.speedY = 17;
   }
   playAnimation(images) {
     let i = this.currentImage % images.length;
