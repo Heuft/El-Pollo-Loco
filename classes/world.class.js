@@ -98,11 +98,7 @@ class World {
     this.throwableObject.forEach((bottle) => {
       this.level.enemies.forEach((enemy) => {
         if (bottle.isColliding(enemy)) {
-          enemy.isHurt();
           enemy.hit();
-          if (enemy instanceof Endboss) {
-            enemy.playHurtAnimation();
-          }
         }
       });
     });

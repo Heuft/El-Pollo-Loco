@@ -29,6 +29,26 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/5_dead/G25.png",
     "img/4_enemie_boss_chicken/5_dead/G26.png",
   ];
+
+  Images_Attack = [
+    "img/4_enemie_boss_chicken/3_attack/G13.png",
+    "img/4_enemie_boss_chicken/3_attack/G14.png",
+    "img/4_enemie_boss_chicken/3_attack/G15.png",
+    "img/4_enemie_boss_chicken/3_attack/G16.png",
+    "img/4_enemie_boss_chicken/3_attack/G17.png",
+    "img/4_enemie_boss_chicken/3_attack/G18.png",
+    "img/4_enemie_boss_chicken/3_attack/G19.png",
+    "img/4_enemie_boss_chicken/3_attack/G20.png",
+  ];
+
+  ImagesEndboss = [
+    "img/7_statusbars/2_statusbar_endboss/green/green0.png",
+    "img/7_statusbars/2_statusbar_endboss/green/green20.png",
+    "img/7_statusbars/2_statusbar_endboss/green/green40.png",
+    "img/7_statusbars/2_statusbar_endboss/green/green60.png",
+    "img/7_statusbars/2_statusbar_endboss/green/green80.png",
+    "img/7_statusbars/2_statusbar_endboss/green/green100.png",
+  ];
   hadFirstContact = false;
   constructor() {
     super().loadImage(this.Images_Walking[0]);
@@ -36,6 +56,8 @@ class Endboss extends MovableObject {
     this.loadImages(this.Images_FirstContact);
     this.loadImages(this.Images_Hurt);
     this.loadImages(this.Images_Dead);
+    this.loadImages(this.Images_Attack);
+    this.loadImages(this.ImagesEndboss);
     this.x = 3700;
     this.speed = 2 + Math.random() * 0.75;
     this.animate();
@@ -44,7 +66,14 @@ class Endboss extends MovableObject {
   animate(hadFirstContact) {
     let i = 0;
     setInterval(() => {
-      if (i < 10) {
+      if (this.isDead()) {
+        this.speed = 0;
+        this.playAnimation(this.Images_Dead);
+      } else if (this.isHurt()) {
+        this.playAnimation(this.Images_Hurt);
+      } else if (this.x - 120 < world.character.x) {
+        this.playAnimation(this.Images_Attack);
+      } else if (i < 10) {
         this.playAnimation(this.Images_FirstContact);
       } else {
         this.playAnimation(this.Images_Walking);
@@ -59,16 +88,5 @@ class Endboss extends MovableObject {
         }, 1000 / 60);
       }
     }, 150);
-  }
-  playHurtAnimation() {
-    let i = 0;
-    let hurtInterval = setInterval(() => {
-      if (i >= this.Images_Hurt.length) {
-        clearInterval(hurtInterval);
-        return;
-      }
-      this.img = this.imageCache[this.Images_Hurt[i]];
-      i++;
-    }, 200);
   }
 }
