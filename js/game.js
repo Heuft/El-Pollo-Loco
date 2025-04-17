@@ -48,3 +48,9 @@ window.addEventListener("keyup", (e) => {
     keyboard.D = false;
   }
 });
+
+function startGame() {
+  document.getElementById("startscreen").classList.add("hidden");
+  document.getElementById("canvas").classList.remove("hidden");
+  init();
+}
