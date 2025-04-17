@@ -40,15 +40,6 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/3_attack/G19.png",
     "img/4_enemie_boss_chicken/3_attack/G20.png",
   ];
-
-  ImagesEndboss = [
-    "img/7_statusbars/2_statusbar_endboss/green/green0.png",
-    "img/7_statusbars/2_statusbar_endboss/green/green20.png",
-    "img/7_statusbars/2_statusbar_endboss/green/green40.png",
-    "img/7_statusbars/2_statusbar_endboss/green/green60.png",
-    "img/7_statusbars/2_statusbar_endboss/green/green80.png",
-    "img/7_statusbars/2_statusbar_endboss/green/green100.png",
-  ];
   hadFirstContact = false;
   constructor() {
     super().loadImage(this.Images_Walking[0]);
@@ -57,9 +48,8 @@ class Endboss extends MovableObject {
     this.loadImages(this.Images_Hurt);
     this.loadImages(this.Images_Dead);
     this.loadImages(this.Images_Attack);
-    this.loadImages(this.ImagesEndboss);
     this.x = 3700;
-    this.speed = 2 + Math.random() * 0.75;
+    this.speed = 2 + 2 * 0.75;
     this.animate();
   }
 
@@ -69,6 +59,7 @@ class Endboss extends MovableObject {
       if (this.isDead()) {
         this.speed = 0;
         this.playAnimation(this.Images_Dead);
+        playWinEndscreen();
       } else if (this.isHurt()) {
         this.playAnimation(this.Images_Hurt);
       } else if (this.x - 120 < world.character.x) {

@@ -78,3 +78,12 @@ canvas {
   flex-direction: row;
   gap: 20px;
 }
+
+.winorLoseOverlay {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  width: 124px;
+  height: 124px;
+}

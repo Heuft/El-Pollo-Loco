@@ -8,6 +8,7 @@ class World {
   statusBarHealth = new StatusBar("health", 0, 100);
   statusBarCoin = new StatusBar("coin", 50, 0);
   statusBarBottle = new StatusBar("bottle", 100, 0);
+  statusbarEndboss = new StatusbarEndboss();
   throwableObject = [];
 
   constructor(canvas, keyboard) {
@@ -121,6 +122,7 @@ class World {
     this.addToMap(this.character);
     this.addObjectToMap(this.level.clouds);
     this.addObjectToMap(this.level.enemies);
+    this.addToMap(this.statusbarEndboss);
     this.addObjectToMap(this.throwableObject);
     this.addObjectToMap(this.level.coins);
     this.addObjectToMap(this.level.bottlebottom);
