@@ -10,6 +10,7 @@ class World {
   statusBarBottle = new StatusBar("bottle", 100, 0);
   statusbarEndboss = new StatusbarEndboss();
   throwableObject = [];
+  endbossDefeated = false;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -100,6 +101,12 @@ class World {
       this.level.enemies.forEach((enemy) => {
         if (bottle.isColliding(enemy)) {
           enemy.hit();
+          if (enemy instanceof Endboss) {
+            this.statusbarEndboss.setPercent(enemy.energy);
+            if (enemy.energy <= 0) {
+              this.endbossDefeated = true;
+            }
+          }
         }
       });
     });
@@ -110,6 +117,7 @@ class World {
   }
 
   draw() {
+    if (this.endbossDefeated) return;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     this.addObjectToMap(this.level.backgroundObject);

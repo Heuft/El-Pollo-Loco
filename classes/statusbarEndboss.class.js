@@ -1,4 +1,4 @@
-class StatusbarEndboss extends MovableObject {
+class StatusbarEndboss extends DrawableObject {
   percent = 100;
 
   Images_StatusBoss = [
@@ -10,16 +10,21 @@ class StatusbarEndboss extends MovableObject {
     "img/7_statusbars/2_statusbar_endboss/green/green100.png",
   ];
 
-  constructor() {
+  constructor(percent = 100) {
     super();
     this.loadImages(this.Images_StatusBoss);
-    this.setPercent(this.percent);
+    this.percent = percent;
     this.x = 3700;
     this.y = 20;
     this.speed = 2 + 2 * 0.75;
     this.width = 200;
     this.height = 60;
     this.animate();
+    this.setPercent(this.percent);
+  }
+
+  moveLeft() {
+    this.x -= this.speed;
   }
 
   setPercent(percent) {

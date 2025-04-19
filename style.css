@@ -84,6 +84,7 @@ canvas {
   justify-content: center;
   align-items: center;
   position: absolute;
-  width: 124px;
-  height: 124px;
+  max-height: 720px;
+  max-width: 480px;
+  padding-top: 100px;
 }

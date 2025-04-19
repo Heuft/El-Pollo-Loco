@@ -5,5 +5,7 @@ function playWinEndscreen() {
 }
 
 function playLoseEndscreen() {
-  return ``;
+  let lose = document.getElementById("loseEndscreen");
+  lose.classList.remove("hidden");
+  lose.classList.add("winorLoseOverlay");
 }
