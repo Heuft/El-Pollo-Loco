@@ -10,7 +10,7 @@ class World {
   statusBarBottle = new StatusBar("bottle", 100, 0);
   statusbarEndboss = new StatusbarEndboss();
   throwableObject = [];
-  endbossDefeated = false;
+  endGame = false;
 
   constructor(canvas, keyboard) {
     this.ctx = canvas.getContext("2d");
@@ -47,8 +47,20 @@ class World {
   checkCollision() {
     this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
-        this.character.hit();
-        this.statusBarHealth.setPercent(this.character.energy);
+        let isFalling = this.character.speedY < 0;
+        let isAboveGround = this.character.isAboveGround();
+        let isEnemyType =
+          enemy instanceof Chicken || enemy instanceof SmallChicken;
+
+        let isTopCollision = isFalling && isAboveGround && isEnemyType;
+
+        if (!isTopCollision) {
+          this.character.hit();
+          this.statusBarHealth.setPercent(this.character.energy);
+          if (this.character.energy <= 0) {
+            this.endGame = true;
+          }
+        }
       }
     });
   }
@@ -104,7 +116,7 @@ class World {
           if (enemy instanceof Endboss) {
             this.statusbarEndboss.setPercent(enemy.energy);
             if (enemy.energy <= 0) {
-              this.endbossDefeated = true;
+              this.endGame = true;
             }
           }
         }
@@ -117,7 +129,7 @@ class World {
   }
 
   draw() {
-    if (this.endbossDefeated) return;
+    if (this.endGame) return;
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     this.addObjectToMap(this.level.backgroundObject);

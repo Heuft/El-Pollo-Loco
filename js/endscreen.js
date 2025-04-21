@@ -8,4 +8,5 @@ function playLoseEndscreen() {
   let lose = document.getElementById("loseEndscreen");
   lose.classList.remove("hidden");
   lose.classList.add("winorLoseOverlay");
+  lose.classList.add("imgSize");
 }
