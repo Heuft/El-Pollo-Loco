@@ -33,6 +33,7 @@ class MovableObject extends DrawableObject {
     if (this.statusbottle > 100) {
       this.statusbottle = 100;
     }
+    playSound("../audio/bottle-clink-101000.mp3", 0.5);
   }
 
   throwBottle() {
@@ -83,6 +84,7 @@ class MovableObject extends DrawableObject {
     if (this.statusCoin == 100) {
       this.speedY = 34;
     } else this.speedY = 17;
+    playSound("../audio/Cartoon Jump Sound Effect.mp3", 0.5);
   }
   playAnimation(images) {
     let i = this.currentImage % images.length;

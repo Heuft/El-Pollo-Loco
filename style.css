@@ -83,12 +83,26 @@ canvas {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
   position: absolute;
-  max-height: 720px;
-  max-width: 480px;
-  padding-top: 100px;
+  top: 360px;
+  padding-left: 60px;
+  gap: 20px;
 }
 
 .imgSize {
-  width: 255px;
+  width: 600px;
+}
+
+#gameButtons {
+  position: absolute;
+  top: 255px;
+  right: 625px;
+  display: flex;
+  gap: 10px;
+  z-index: 3;
+}
+
+#gameButtons.hidden {
+  display: none;
 }

@@ -8,6 +8,7 @@
     <script src="./classes/drawableObject.class.js"></script>
     <script src="./classes/movable-object.class.js"></script>
     <script src="./classes/character.class.js"></script>
+    <script src="./js/audio.js"></script>
 
     <script src="./classes/chicken.class.js"></script>
     <script src="./classes/cloud.class.js"></script>
@@ -34,17 +35,6 @@
   <body>
     <div class="bg-image"></div>
     <h1>El Pollo Loco</h1>
-    <div>
-      <img
-        class="hidden"
-        id="winEndscreen"
-        src="img/You won, you lost/You won A.png"
-        alt=""
-      />
-    </div>
-    <div class="hidden" id="loseEndscreen">
-      <img src="img/You won, you lost/You lost b.png" alt="" />
-    </div>
     <div id="startscreen">
       <img
         class="startimg"
@@ -57,7 +47,28 @@
       </div>
     </div>
     <div id="fullscreen">
+      <div class="hidden" id="loseEndscreen">
+        <img
+          class="imgSize"
+          src="img/You won, you lost/You lost b.png"
+          alt=""
+        />
+        <button class="button" onclick="startGame()">Restart Game</button>
+      </div>
+      <div class="hidden" id="winEndscreen">
+        <img
+          class="imgSize"
+          src="img/You won, you lost/You won B.png"
+          alt=""
+        /><button class="button" onclick="startGame()">Restart Game</button>
+      </div>
       <canvas id="canvas" class="hidden" width="720" height="480"> </canvas>
+      <div id="gameButtons" class="hidden">
+        <button id="toggleMusicBtn" onclick="musicOff()">🔊 Musik aus</button>
+        <button id="toggleFullscreenBtn" onclick="fullscreen()">
+          🖵 Vollbild
+        </button>
+      </div>
     </div>
   </body>
 </html>
