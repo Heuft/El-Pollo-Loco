@@ -2,6 +2,10 @@ class Endboss extends MovableObject {
   height = 400;
   width = 250;
   y = 50;
+  EndbossTheme = playSound(
+    "../audio/ultimatum-120bpm-orchestra-loop-325053.mp3",
+    0.1
+  );
   Images_Walking = [
     "../img/4_enemie_boss_chicken/1_walk/G1.png",
     "../img/4_enemie_boss_chicken/1_walk/G2.png",
@@ -74,6 +78,9 @@ class Endboss extends MovableObject {
       if (world.character.x > 3300 && !hadFirstContact) {
         i = 0;
         hadFirstContact = true;
+        backgroundMusic.pause();
+        this.EndbossTheme.play();
+
         setInterval(() => {
           this.moveLeft();
         }, 1000 / 60);

@@ -1,6 +1,10 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
+let backgroundMusic = playSound(
+  "../audio/Western Background Music - OLD WEST MUSIC -  Ambient  Instrumental.mp3",
+  0.05
+);
 
 function init() {
   canvas = document.getElementById("canvas");
@@ -50,42 +54,34 @@ window.addEventListener("keyup", (e) => {
 });
 
 function startGame() {
+  playSound("../audio/game-start-6104.mp3", 0.1);
+  backgroundMusic.play();
   document.getElementById("startscreen").classList.add("hidden");
   document.getElementById("canvas").classList.remove("hidden");
   document.getElementById("gameButtons").classList.remove("hidden");
   init();
 }
 
-function musicOff() {
+function toggleMusic() {
   const btn = document.getElementById("toggleMusicBtn");
-  if (btn.innerText.includes("🔊")) {
+  const mediaElements = document.querySelectorAll("audio");
+
+  const isCurrentlyOn = btn.innerText.includes("🔊");
+
+  mediaElements.forEach((el) => {
+    el.muted = isCurrentlyOn;
+    if (!isCurrentlyOn && el.volume === 0) {
+      el.volume = 1.0;
+    }
+  });
+
+  if (isCurrentlyOn) {
     btn.innerText = "🔇 Musik an";
   } else {
     btn.innerText = "🔊 Musik aus";
   }
 }
 
-//let music = new Audio("audio/music.mp3");
-//music.loop = true;
-
-//let isMusicOn = true;
-
-//document.getElementById("toggleMusicBtn").addEventListener("click", () => {
-//  if (isMusicOn) {
-//    music.pause();
-//    document.getElementById("toggleMusicBtn").innerText = "🔇 Musik an";
-//  } else {
-//    music.play();
-//    document.getElementById("toggleMusicBtn").innerText = "🔊 Musik aus";
-//  }
-//  isMusicOn = !isMusicOn;
-////});
-
-//document.getElementById("toggleFullscreenBtn").addEventListener("click", () => {
-//  let fullscreenEl = document.getElementById("fullscreen");
-//  if (!document.fullscreenElement) {
-//    fullscreenEl.requestFullscreen();
-//  } else {
-//    document.exitFullscreen();
-//  }
-//});
+function mutePage() {
+  document.querySelectorAll("video, audio").forEach((elem) => muteMe(elem));
+}

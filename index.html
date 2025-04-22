@@ -3,7 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>El Pollo Loco</title>
+    <link rel="icon" type="image/x-icon" href="./img/Favicon.jpg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bangers&family=Kablammo&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="style.css" />
     <script src="./classes/drawableObject.class.js"></script>
     <script src="./classes/movable-object.class.js"></script>
@@ -34,6 +41,7 @@
   </head>
   <body>
     <div class="bg-image"></div>
+
     <h1>El Pollo Loco</h1>
     <div id="startscreen">
       <img
@@ -60,15 +68,22 @@
           class="imgSize"
           src="img/You won, you lost/You won B.png"
           alt=""
-        /><button class="button" onclick="startGame()">Restart Game</button>
+        /><button class="button" onclick="init()">Restart Game</button>
       </div>
+
       <canvas id="canvas" class="hidden" width="720" height="480"> </canvas>
       <div id="gameButtons" class="hidden">
-        <button id="toggleMusicBtn" onclick="musicOff()">🔊 Musik aus</button>
+        <button id="toggleMusicBtn" onclick="mutePage()">🔊 Musik aus</button>
         <button id="toggleFullscreenBtn" onclick="fullscreen()">
           🖵 Vollbild
         </button>
       </div>
+    </div>
+    <div class="buttonTutorial">
+      <h1>&#8592; MOVE LEFT</h1>
+      <h1>&#8594; MOVE RIGHT</h1>
+      <h1>SPACE = JUMP</h1>
+      <h1>D = THROW BOTTLE</h1>
     </div>
   </body>
 </html>

@@ -56,9 +56,11 @@ class World {
 
         if (!isTopCollision) {
           this.character.hit();
+          playSound("../audio/male_hurt7-48124.mp3", 0.1);
           this.statusBarHealth.setPercent(this.character.energy);
           if (this.character.energy <= 0) {
             this.endGame = true;
+            playSound("../audio/violin-lose-4-185125.mp3", 0.1);
           }
         }
       }
@@ -77,6 +79,7 @@ class World {
         ) {
           enemy.isDead();
           this.character.speedY = +25;
+          playSound("../audio/jump-sound-14839.mp3", 0.1);
           return false;
         }
       }
@@ -87,7 +90,7 @@ class World {
   checkBottleCollision() {
     this.level.bottlebottom = this.level.bottlebottom.filter((bottlebottom) => {
       if (this.character.isColliding(bottlebottom)) {
-        //Sound
+        playSound("../audio/bottle-clink-101000.mp3", 0.01);
         this.character.getBottle();
         this.statusBarBottle.setPercent(this.character.statusbottle);
         return false;
@@ -99,7 +102,7 @@ class World {
   checkCoinCollision() {
     this.level.coins = this.level.coins.filter((coins) => {
       if (this.character.isColliding(coins)) {
-        //Sound
+        playSound("../audio/coin-recieved-230517.mp3", 0.01);
         this.character.getCoin();
         this.statusBarCoin.setPercent(this.character.statusCoin);
         return false;
@@ -113,10 +116,19 @@ class World {
       this.level.enemies.forEach((enemy) => {
         if (bottle.isColliding(enemy)) {
           enemy.hit();
+          playSound(
+            "../audio/Chicken Scream Noise - Sound Effect for editing.mp3",
+            0.1
+          );
           if (enemy instanceof Endboss) {
             this.statusbarEndboss.setPercent(enemy.energy);
+            playSound(
+              "../audio/Chicken Scream Noise - Sound Effect for editing.mp3",
+              0.1
+            );
             if (enemy.energy <= 0) {
               this.endGame = true;
+              playSound("../audio/you-win-sequence-1-183948.mp3", 0.1);
             }
           }
         }

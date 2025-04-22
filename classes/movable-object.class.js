@@ -21,10 +21,9 @@ class MovableObject extends DrawableObject {
 
   hit() {
     this.energy -= 10;
+    this.lastHit = new Date().getTime();
     if (this.energy < 0) {
       this.energy = 0;
-    } else {
-      this.lastHit = new Date().getTime();
     }
   }
 
@@ -33,7 +32,6 @@ class MovableObject extends DrawableObject {
     if (this.statusbottle > 100) {
       this.statusbottle = 100;
     }
-    playSound("../audio/bottle-clink-101000.mp3", 0.5);
   }
 
   throwBottle() {
@@ -81,10 +79,8 @@ class MovableObject extends DrawableObject {
   }
 
   jump() {
-    if (this.statusCoin == 100) {
-      this.speedY = 34;
-    } else this.speedY = 17;
-    playSound("../audio/Cartoon Jump Sound Effect.mp3", 0.5);
+    this.speedY = 17;
+    playSound("../audio/Cartoon Jump Sound Effect.mp3", 0.01);
   }
   playAnimation(images) {
     let i = this.currentImage % images.length;
