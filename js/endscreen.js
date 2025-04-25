@@ -6,6 +6,13 @@ function playWinEndscreen() {
 
 function playLoseEndscreen() {
   let lose = document.getElementById("loseEndscreen");
-  lose.classList.remove("hidden");
+  lose.style.display = "flex";
   lose.classList.add("winorLoseOverlay");
+}
+
+function restartGame() {
+  let lose = document.getElementById("loseEndscreen");
+  lose.classList.remove("winorLoseOverlay");
+  lose.style.display = "none";
+  init();
 }
