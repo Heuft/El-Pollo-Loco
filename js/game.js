@@ -62,23 +62,3 @@ function startGame() {
   document.getElementById("gameButtons").classList.remove("hidden");
   init();
 }
-
-function toggleMusic() {
-  const btn = document.getElementById("toggleMusicBtn");
-  const mediaElements = document.querySelectorAll("audio");
-
-  const isCurrentlyOn = btn.innerText.includes("🔊");
-
-  mediaElements.forEach((el) => {
-    el.muted = isCurrentlyOn;
-    if (!isCurrentlyOn && el.volume === 0) {
-      el.volume = 1.0;
-    }
-  });
-
-  if (isCurrentlyOn) {
-    btn.innerText = "🔇 Musik an";
-  } else {
-    btn.innerText = "🔊 Musik aus";
-  }
-}

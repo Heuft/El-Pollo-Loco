@@ -2,6 +2,7 @@ class Character extends MovableObject {
   height = 200;
   y = 90;
   speed = 10;
+  hasTriggeredEndscreen = false;
   Images_Walking = [
     "../img/2_character_pepe/2_walk/W-21.png",
     "../img/2_character_pepe/2_walk/W-22.png",
@@ -105,7 +106,10 @@ class Character extends MovableObject {
 
       if (this.isDead()) {
         this.playAnimation(this.Images_Dead);
-        playLoseEndscreen();
+        if (!this.hasTriggeredEndscreen) {
+          this.hasTriggeredEndscreen = true;
+          playLoseEndscreen();
+        }
       } else if (this.isHurt()) {
         this.playAnimation(this.Images_Hurt);
       } else if (this.isAboveGround()) {

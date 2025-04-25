@@ -55,30 +55,36 @@
       </div>
     </div>
     <div id="fullscreen">
-      <div class="hidden" id="loseEndscreen">
+      <div class="dNone" id="loseEndscreen">
         <img
           class="imgSize"
           src="img/You won, you lost/You lost b.png"
           alt=""
         />
-        <div class="dFlex">
+        <div class="dFlex aItems">
           <button class="button" onclick="restartGame()">Restart Game</button>
           <a class="impressum" href="/impressum.html">Impressum</a>
         </div>
       </div>
-      <div class="hidden" id="winEndscreen">
+      <div class="dNone" id="winEndscreen">
         <img class="imgSize" src="img/You won, you lost/You won B.png" alt="" />
-        <div class="dFlex">
-          <button class="button" onclick="restartGame()">Restart Game</button>
+        <div class="dFlex aItems">
+          <button class="button" onclick="restartGame2()">Restart Game</button>
           <a class="impressum" href="/impressum.html">Impressum</a>
         </div>
       </div>
 
       <canvas id="canvas" class="hidden" width="720" height="480"> </canvas>
       <div id="gameButtons" class="hidden">
-        <button id="toggleMusicBtn" onclick="mutePage()">🔊 Musik aus</button>
-        <button id="toggleFullscreenBtn" onclick="toggleFullscreen()">
-          🖵 Vollbild
+        <button class="btnMute" id="toggleMusicBtn" onclick="mutePage()">
+          <img id="muteIcon" class="muteBtn" src="./img/mute.png" alt="" />
+        </button>
+        <button
+          class="btnMute"
+          id="toggleFullscreenBtn"
+          onclick="toggleFullscreen()"
+        >
+          <img class="muteBtn" src="./img/fullscreen.png" alt="" />
         </button>
       </div>
     </div>

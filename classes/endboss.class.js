@@ -2,9 +2,11 @@ class Endboss extends MovableObject {
   height = 400;
   width = 250;
   y = 50;
-  EndbossTheme = playSound(
+  endScene = false;
+  EndbossTheme = prepareSound(
     "../audio/ultimatum-120bpm-orchestra-loop-325053.mp3",
-    0.1
+    0.1,
+    true
   );
   Images_Walking = [
     "../img/4_enemie_boss_chicken/1_walk/G1.png",
@@ -63,7 +65,10 @@ class Endboss extends MovableObject {
       if (this.isDead()) {
         this.speed = 0;
         this.playAnimation(this.Images_Dead);
-        playWinEndscreen();
+        if (!this.endScene) {
+          this.endScene = true;
+          playWinEndscreen();
+        }
       } else if (this.isHurt()) {
         this.playAnimation(this.Images_Hurt);
       } else if (this.x - 120 < world.character.x) {
