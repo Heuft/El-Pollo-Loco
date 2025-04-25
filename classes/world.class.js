@@ -56,13 +56,18 @@ class World {
         let isTopCollision = isFalling && isAboveGround && isEnemyType;
 
         if (!isTopCollision) {
-          this.character.hit();
+          let isSpecialEnemyWith90Energy = isEnemyType && enemy.energy === 90;
 
-          playSound("../audio/male_hurt7-48124.mp3", 0.1);
-          this.statusBarHealth.setPercent(this.character.energy);
-          if (this.character.energy <= 0) {
-            this.endGame = true;
-            playSound("../audio/violin-lose-4-185125.mp3", 0.1);
+          if (!isSpecialEnemyWith90Energy) {
+            this.character.hit();
+
+            playSound("../audio/male_hurt7-48124.mp3", 0.1);
+            this.statusBarHealth.setPercent(this.character.energy);
+
+            if (this.character.energy <= 0) {
+              this.endGame = true;
+              playSound("../audio/violin-lose-4-185125.mp3", 0.1);
+            }
           }
         }
       }
