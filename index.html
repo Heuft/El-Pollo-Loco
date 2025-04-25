@@ -61,20 +61,23 @@
           src="img/You won, you lost/You lost b.png"
           alt=""
         />
-        <button class="button" onclick="restartGame()">Restart Game</button>
+        <div class="dFlex">
+          <button class="button" onclick="restartGame()">Restart Game</button>
+          <a class="impressum" href="/impressum.html">Impressum</a>
+        </div>
       </div>
       <div class="hidden" id="winEndscreen">
-        <img
-          class="imgSize"
-          src="img/You won, you lost/You won B.png"
-          alt=""
-        /><button class="button" onclick="restartGame()">Restart Game</button>
+        <img class="imgSize" src="img/You won, you lost/You won B.png" alt="" />
+        <div class="dFlex">
+          <button class="button" onclick="restartGame()">Restart Game</button>
+          <a class="impressum" href="/impressum.html">Impressum</a>
+        </div>
       </div>
 
       <canvas id="canvas" class="hidden" width="720" height="480"> </canvas>
       <div id="gameButtons" class="hidden">
         <button id="toggleMusicBtn" onclick="mutePage()">🔊 Musik aus</button>
-        <button id="toggleFullscreenBtn" onclick="fullscreen()">
+        <button id="toggleFullscreenBtn" onclick="toggleFullscreen()">
           🖵 Vollbild
         </button>
       </div>

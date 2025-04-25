@@ -23,6 +23,7 @@ class World {
 
   run() {
     setInterval(() => {
+      if (this.endGame) return;
       this.checkCollision();
       this.checkThrowObjects();
       this.checkBottleCollision();
@@ -56,6 +57,7 @@ class World {
 
         if (!isTopCollision) {
           this.character.hit();
+
           playSound("../audio/male_hurt7-48124.mp3", 0.1);
           this.statusBarHealth.setPercent(this.character.energy);
           if (this.character.energy <= 0) {

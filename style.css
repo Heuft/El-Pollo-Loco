@@ -110,7 +110,7 @@ body h1 {
 }
 
 #gameButtons.hidden {
-  display: none;
+  display: none !important;
 }
 
 .buttonTutorial {
@@ -125,4 +125,8 @@ body h1 {
   padding-right: 350px;
   text-decoration: none;
   font-family: system-ui;
+}
+
+.dFlex {
+  display: flex;
 }

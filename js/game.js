@@ -8,6 +8,7 @@ let backgroundMusic = playSound(
 
 function init() {
   canvas = document.getElementById("canvas");
+  initLevel();
   world = new World(canvas, keyboard);
 }
 
@@ -80,8 +81,4 @@ function toggleMusic() {
   } else {
     btn.innerText = "🔊 Musik aus";
   }
-}
-
-function mutePage() {
-  document.querySelectorAll("video, audio").forEach((elem) => muteMe(elem));
 }

@@ -5,14 +5,25 @@ function playWinEndscreen() {
 }
 
 function playLoseEndscreen() {
-  let lose = document.getElementById("loseEndscreen");
-  lose.style.display = "flex";
+  const lose = document.getElementById("loseEndscreen");
+  lose.classList.remove("hidden");
   lose.classList.add("winorLoseOverlay");
 }
 
 function restartGame() {
   let lose = document.getElementById("loseEndscreen");
-  lose.classList.remove("winorLoseOverlay");
-  lose.style.display = "none";
+  let win = document.getElementById("winEndscreen");
+
+  if (lose) {
+    lose.classList.add("hidden");
+    lose.classList.remove("winorLoseOverlay");
+  }
+  if (win) {
+    win.classList.add("hidden");
+  }
+
+  document.getElementById("canvas").classList.remove("hidden");
+  document.getElementById("gameButtons").classList.remove("hidden");
+
   init();
 }
