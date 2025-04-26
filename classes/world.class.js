@@ -67,7 +67,6 @@ class World {
 
             if (this.character.energy <= 0) {
               this.endGame = true;
-              pauseSound(EndbossTheme);
               playSound("../audio/violin-lose-4-185125.mp3", 0.1);
             }
           }
