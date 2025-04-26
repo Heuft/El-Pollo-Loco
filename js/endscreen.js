@@ -15,6 +15,7 @@ function restartGame() {
   lose.classList.remove("winorLoseOverlay");
   lose.classList.add("dNone");
   init();
+  backgroundMusic.play();
 }
 
 function restartGame2() {
@@ -22,4 +23,6 @@ function restartGame2() {
   win.classList.remove("winorLoseOverlay");
   win.classList.add("dNone");
   init();
+  backgroundMusic.play();
+  pauseSound(endbossThemeSound);
 }

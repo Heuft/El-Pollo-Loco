@@ -30,6 +30,7 @@ class World {
       this.checkCoinCollision();
       this.checkEnemyTopCollision();
       this.checkThrowBottleCollision();
+      this.startEndbossTheme();
     }, 200);
   }
 
@@ -66,6 +67,7 @@ class World {
 
             if (this.character.energy <= 0) {
               this.endGame = true;
+              pauseSound(EndbossTheme);
               playSound("../audio/violin-lose-4-185125.mp3", 0.1);
             }
           }
@@ -106,6 +108,16 @@ class World {
     });
   }
 
+  startEndbossTheme() {
+    if (!endbossThemeSound && world.character.x > 3300) {
+      endbossThemeSound = playSound(
+        "../audio/ultimatum-120bpm-orchestra-loop-325053.mp3",
+        0.1
+      );
+      endbossThemeSound.loop = true;
+    }
+  }
+
   checkCoinCollision() {
     this.level.coins = this.level.coins.filter((coins) => {
       if (this.character.isColliding(coins)) {
@@ -136,6 +148,7 @@ class World {
             if (enemy.energy <= 0) {
               this.endGame = true;
               playSound("../audio/you-win-sequence-1-183948.mp3", 0.1);
+              pauseSound(backgroundMusic);
             }
           }
         }
@@ -145,6 +158,10 @@ class World {
 
   setWorld() {
     this.character.world = this;
+  }
+
+  playEndbossTheme() {
+    if (world.character.x > 3300) EndbossTheme.play();
   }
 
   draw() {

@@ -5,6 +5,7 @@ let backgroundMusic = playSound(
   "../audio/Western Background Music - OLD WEST MUSIC -  Ambient  Instrumental.mp3",
   0.05
 );
+let endbossThemeSound;
 
 function init() {
   canvas = document.getElementById("canvas");

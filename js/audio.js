@@ -38,3 +38,16 @@ function prepareSound(path, volume = 1.0, loop = false) {
   sound.loop = loop;
   return sound;
 }
+
+function pauseSound(sound) {
+  if (sound && typeof sound.pause === "function") {
+    sound.pause();
+  }
+}
+
+function stopSound(sound) {
+  if (sound && typeof sound.pause === "function") {
+    sound.pause();
+    sound.currentTime = 0;
+  }
+}
