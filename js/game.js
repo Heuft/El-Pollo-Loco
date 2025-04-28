@@ -1,7 +1,7 @@
 let canvas;
 let world;
 let keyboard = new Keyboard();
-let backgroundMusic = playSound(
+let backgroundMusic = prepareSound(
   "../audio/Western Background Music - OLD WEST MUSIC -  Ambient  Instrumental.mp3",
   0.05
 );
@@ -61,5 +61,8 @@ function startGame() {
   document.getElementById("startscreen").classList.add("hidden");
   document.getElementById("canvas").classList.remove("hidden");
   document.getElementById("gameButtons").classList.remove("hidden");
+  document.getElementById("panels").classList.remove("hidden");
+  document.getElementById("panels").classList.add("panels");
+  keyboard.touchEvent();
   init();
 }

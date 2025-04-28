@@ -43,6 +43,7 @@
     <div class="bg-image"></div>
 
     <h1>El Pollo Loco</h1>
+
     <div id="startscreen">
       <img
         class="startimg"
@@ -55,26 +56,6 @@
       </div>
     </div>
     <div id="fullscreen">
-      <div class="dNone" id="loseEndscreen">
-        <img
-          class="imgSize"
-          src="img/You won, you lost/You lost b.png"
-          alt=""
-        />
-        <div class="dFlex aItems">
-          <button class="button" onclick="restartGame()">Restart Game</button>
-          <a class="impressum" href="/impressum.html">Impressum</a>
-        </div>
-      </div>
-      <div class="dNone" id="winEndscreen">
-        <img class="imgSize" src="img/You won, you lost/You won B.png" alt="" />
-        <div class="dFlex aItems">
-          <button class="button" onclick="restartGame2()">Restart Game</button>
-          <a class="impressum" href="/impressum.html">Impressum</a>
-        </div>
-      </div>
-
-      <canvas id="canvas" class="hidden" width="720" height="480"> </canvas>
       <div id="gameButtons" class="hidden">
         <button class="btnMute" id="toggleMusicBtn" onclick="mutePage()">
           <img id="muteIcon" class="muteBtn" src="./img/mute.png" alt="" />
@@ -87,6 +68,54 @@
           <img class="muteBtn" src="./img/fullscreen.png" alt="" />
         </button>
       </div>
+      <div class="dNone" id="loseEndscreen">
+        <img
+          class="imgSize"
+          src="img/You won, you lost/You lost b.png"
+          alt=""
+        />
+        <div class="dFlex aItems">
+          <button class="button" onclick="restartGame()">Restart Game</button>
+          <a class="impressum" href="/impressum.html">Impressum</a>
+        </div>
+      </div>
+
+      <div class="dNone" id="winEndscreen">
+        <img class="imgSize" src="img/You won, you lost/You won B.png" alt="" />
+        <div class="dFlex aItems">
+          <button class="button" onclick="restartGame2()">Restart Game</button>
+          <a class="impressum" href="/impressum.html">Impressum</a>
+        </div>
+      </div>
+      <div id="panels" class="hidden">
+        <div id="panelLeft" class="panelLeft">
+          <img
+            id="btnLeft"
+            class="imgControlBtn"
+            src="./img/left.png"
+            alt=""
+          /><img
+            id="btnRight"
+            class="imgControlBtn"
+            src="./img/right.png"
+            alt=""
+          />
+        </div>
+        <div id="panelRight" class="panelRight">
+          <img
+            id="btnJump"
+            class="imgControlBtn"
+            src="./img/Up.png"
+            alt=""
+          /><img
+            id="btnThrow"
+            class="imgControlBtn"
+            src="./img/Throw.png"
+            alt=""
+          />
+        </div>
+      </div>
+      <canvas id="canvas" class="hidden" width="720" height="480"> </canvas>
     </div>
     <div class="buttonTutorial">
       <h1>&#8592; MOVE LEFT</h1>
