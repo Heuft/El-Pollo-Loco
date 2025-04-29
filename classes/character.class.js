@@ -116,7 +116,7 @@ class Character extends MovableObject {
         this.playAnimation(this.Images_Jumping);
       } else if (timeSinceLastMove > 15) {
         this.playAnimation(this.Images_longIdle);
-      } else if (timeSinceLastMove > 3) {
+      } else if (timeSinceLastMove > 1) {
         this.playAnimation(this.Images_Idle);
       } else if (this.world.keyboard.Right || this.world.keyboard.Left) {
         this.playAnimation(this.Images_Walking);
