@@ -168,14 +168,14 @@ class World {
     this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
     this.ctx.translate(this.camera_x, 0);
     this.addObjectToMap(this.level.backgroundObject);
+    this.addObjectToMap(this.level.clouds);
 
+    this.addToMap(this.character);
     this.ctx.translate(-this.camera_x, 0);
     this.addToMap(this.statusBarHealth);
     this.addToMap(this.statusBarBottle);
     this.addToMap(this.statusBarCoin);
     this.ctx.translate(this.camera_x, 0);
-    this.addToMap(this.character);
-    this.addObjectToMap(this.level.clouds);
     this.addObjectToMap(this.level.enemies);
     this.addToMap(this.statusbarEndboss);
     this.addObjectToMap(this.throwableObject);
