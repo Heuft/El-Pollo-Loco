@@ -3,6 +3,7 @@ class Character extends MovableObject {
   y = 90;
   speed = 10;
   hasTriggeredEndscreen = false;
+  haslanded = false;
   Images_Walking = [
     "../img/2_character_pepe/2_walk/W-21.png",
     "../img/2_character_pepe/2_walk/W-22.png",
@@ -75,8 +76,11 @@ class Character extends MovableObject {
     this.loadImages(this.Images_Idle);
     this.loadImages(this.Images_longIdle);
     this.applyGravity();
-
     this.animate();
+  }
+
+  onGround() {
+    return this.y >= 217 && this.speedY <= 0;
   }
 
   animate() {
