@@ -62,14 +62,15 @@ class MovableObject extends DrawableObject {
       if (this.isAboveGround() || this.speedY > 0) {
         this.y -= this.speedY;
         this.speedY -= this.acceleration;
+        if (this instanceof Character) {
+          if (this.y >= 225) {
+            this.y = 225;
+            this.speedY = 0;
 
-        if (this.y >= 225) {
-          this.y = 225;
-          this.speedY = 0;
-
-          if (this instanceof Character && !this.hasLandedOnce) {
-            this.hasLandedOnce = true;
-            this.loadImage("../img/2_character_pepe/2_walk/W-21.png");
+            if (this instanceof Character && !this.hasLandedOnce) {
+              this.hasLandedOnce = true;
+              this.loadImage("../img/2_character_pepe/2_walk/W-21.png");
+            }
           }
         }
       }

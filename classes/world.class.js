@@ -138,6 +138,10 @@ class World {
             "../audio/Chicken Scream Noise - Sound Effect for editing.mp3",
             0.1
           );
+          bottle.splash(() => {
+            this.throwableObject.splice(bottle);
+          });
+
           if (enemy instanceof Endboss) {
             this.statusbarEndboss.setPercent(enemy.energy);
             playSound(
