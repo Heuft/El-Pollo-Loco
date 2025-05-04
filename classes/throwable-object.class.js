@@ -1,4 +1,6 @@
 class ThrowableObject extends MovableObject {
+  splashY = 350;
+
   Images_Splash = [
     "../img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png",
     "../img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png",
@@ -22,8 +24,13 @@ class ThrowableObject extends MovableObject {
   throw() {
     this.speedY = 18;
     this.applyGravity();
+
     this.throwInterval = setInterval(() => {
-      this.x += 8;
+      if (world.character.otherDirection) {
+        this.x -= 8;
+      } else {
+        this.x += 8;
+      }
     }, 25);
   }
 
@@ -39,11 +46,23 @@ class ThrowableObject extends MovableObject {
   splash() {
     clearInterval(this.gravityInterval);
     clearInterval(this.throwInterval);
-    this.y = 350;
+    this.y = this.splashY;
+
+    this.isSplashing = true;
+
+    this.playAnimation(this.Images_Splash);
+
+    setTimeout(() => {
+      this.isSplashing = false;
+      let index = world.throwableObject.indexOf(this);
+      if (index > -1) {
+        world.throwableObject.splice(index, 1);
+      }
+    }, 1000);
   }
 
   animate() {
-    setInterval(() => {
+    this.animationInterval = setInterval(() => {
       if (this.isSplashing) {
         this.playAnimation(this.Images_Splash);
       }

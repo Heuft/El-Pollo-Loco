@@ -30,6 +30,13 @@ class DrawableObject {
     ctx.drawImage(this.img, this.x, this.y, this.width, this.height);
   }
 
+  moveRight() {
+    this.x += this.speed;
+  }
+  moveLeft() {
+    this.x -= this.speed;
+  }
+
   loadImages(arr) {
     arr.forEach((path) => {
       let img = new Image();

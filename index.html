@@ -44,21 +44,23 @@
 
     <h1>El Pollo Loco</h1>
 
-    <div id="startscreen">
-      <img
-        class="startimg"
-        src="img/9_intro_outro_screens/start/startscreen_2.png"
-        alt=""
-      />
-      <div class="overlay">
-        <button class="button" onclick="startGame()">Start</button>
-        <a class="impressum" href="/impressum.html">Impressum</a>
-      </div>
-    </div>
     <div id="fullscreen">
       <div class="ScreenRotate">
         <h2 class="rotateFont">Rotate Screen</h2>
       </div>
+      <div id="startscreen">
+        <img
+          class="startimg"
+          src="img/9_intro_outro_screens/start/startscreen_2.png"
+          alt=""
+        />
+
+        <div class="overlay">
+          <button class="button" onclick="startGame()">Start</button>
+          <a class="button" href="/impressum.html">Impressum</a>
+        </div>
+      </div>
+
       <div id="gameButtons" class="hidden">
         <button class="btnMute" id="toggleMusicBtn" onclick="mutePage()">
           <img id="muteIcon" class="muteBtn" src="./img/mute.png" alt="" />
@@ -77,9 +79,9 @@
           src="img/You won, you lost/You lost b.png"
           alt=""
         />
-        <div class="dFlex aItems">
+        <div class="dFlex aItems gap">
           <button class="button" onclick="restartGame()">Restart Game</button>
-          <a class="impressum" href="/impressum.html">Impressum</a>
+          <a class="button" href="/impressum.html">Impressum</a>
         </div>
       </div>
 
@@ -89,9 +91,9 @@
           src="./img/You won, you lost/You Won B.png"
           alt=""
         />
-        <div class="dFlex aItems">
+        <div class="dFlex aItems gap">
           <button class="button" onclick="restartGame2()">Restart Game</button>
-          <a class="impressum" href="/impressum.html">Impressum</a>
+          <a class="button" href="/impressum.html">Impressum</a>
         </div>
       </div>
       <div id="panels" class="hidden">

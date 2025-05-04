@@ -7,20 +7,34 @@ class MovableObject extends DrawableObject {
   statusbottle = 0;
   statusCoin = 0;
   lastHit = 0;
+  cooldown = 1000;
   minX = 500;
   maxX = 3500;
 
+  offset = {
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+  };
+
   isColliding(mo) {
     return (
-      this.x + this.width > mo.x &&
-      this.y + this.height > mo.y &&
-      this.x < mo.x + mo.width &&
-      this.y < mo.y + mo.height
+      this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
+      this.y + this.height - this.offset.bottom > mo.y + mo.offset.top &&
+      this.x + this.offset.left < mo.x + mo.width - mo.offset.right &&
+      this.y + this.offset.top < mo.y + mo.height - mo.offset.bottom
     );
   }
 
   hit() {
-    this.energy -= 10;
+    let now = new Date().getTime();
+
+    if (now - this.lastHit < this.cooldown) return;
+    if ((this.statusCoin = 100)) {
+      this.energy -= 20;
+      this.lastHit = new Date().getTime();
+    } else this.energy -= 10;
     this.lastHit = new Date().getTime();
     if (this.energy < 0) {
       this.energy = 0;
@@ -39,6 +53,19 @@ class MovableObject extends DrawableObject {
     if (this.statusbottle < 0) {
       this.statusbottle = 0;
     }
+  }
+
+  die() {
+    this.isDying = true;
+    this.playAnimation(this.Images_Dead);
+    this.speed = 0;
+
+    setTimeout(() => {
+      let index = world.level.enemies.indexOf(this);
+      if (index > -1) {
+        world.level.enemies.splice(index, 1);
+      }
+    }, 1000);
   }
 
   getCoin() {
@@ -83,13 +110,6 @@ class MovableObject extends DrawableObject {
     } else {
       return this.y < 225;
     }
-  }
-
-  moveRight() {
-    this.x += this.speed;
-  }
-  moveLeft() {
-    this.x -= this.speed;
   }
 
   jump() {

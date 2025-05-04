@@ -4,6 +4,14 @@ class Character extends MovableObject {
   speed = 10;
   hasTriggeredEndscreen = false;
   haslanded = false;
+
+  offset = {
+    top: 120,
+    left: 30,
+    right: 40,
+    bottom: 30,
+  };
+
   Images_Walking = [
     "../img/2_character_pepe/2_walk/W-21.png",
     "../img/2_character_pepe/2_walk/W-22.png",

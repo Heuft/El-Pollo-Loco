@@ -37,12 +37,14 @@ body h1 {
   font-family: "Kablammo", system-ui;
   font-weight: 400;
   font-style: normal;
+  color: white;
 }
 
 .button {
   background-color: #ffcc00;
   border: 4px solid #000;
   color: #000;
+  font-family: "Kablammo", system-ui;
   font-size: 16px;
   padding: 16px 32px;
   cursor: pointer;
@@ -50,6 +52,7 @@ body h1 {
   text-transform: uppercase;
   box-shadow: 4px 4px 0 #000;
   transition: transform 0.1s ease;
+  text-decoration: none;
 }
 
 .button:hover {
@@ -91,6 +94,9 @@ body h1 {
   flex-direction: row;
   gap: 20px;
 }
+.overlay a {
+  text-decoration: none;
+}
 
 .winorLoseOverlay {
   display: flex;
@@ -128,6 +134,7 @@ body h1 {
   margin-top: 100px;
   display: flex;
   gap: 30px;
+  color: white;
 }
 
 .impressumFlex {
@@ -176,16 +183,24 @@ body h1 {
   display: none;
   justify-content: center;
   align-items: center;
+  z-index: 90;
 }
 .rotateFont {
   color: white;
 }
 
+.gap {
+  gap: 20px;
+}
+
+body p {
+  color: white;
+}
+
 @media (max-width: 1367px) {
   .ScreenRotate {
-    display: none;
+    display: flex;
   }
-
   .bg-image {
     display: none;
   }
@@ -209,6 +224,7 @@ body h1 {
     display: none;
   }
 }
+
 @media only screen and (max-width: 720px) {
   canvas {
     width: 100%;
@@ -228,5 +244,59 @@ body h1 {
   }
   .ScreenRotate {
     display: none;
+  }
+  body p {
+    color: black;
+  }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) and (orientation: portrait) {
+  .ScreenRotate {
+    display: flex;
+  }
+}
+
+@media only screen and (min-device-height: 768px) and (max-device-width: 1024px) and (orientation: landscape) {
+  .ScreenRotate {
+    display: none;
+  }
+  .panels {
+    display: flex;
+    position: absolute;
+    gap: 300px;
+    z-index: 3;
+    bottom: 150px;
+  }
+}
+
+@media only screen and (min-device-height: 820px) and (max-device-width: 1180px) and (orientation: landscape) {
+  .ScreenRotate {
+    display: none;
+  }
+  .panels {
+    display: flex;
+    position: absolute;
+    gap: 300px;
+    z-index: 3;
+    bottom: 200px;
+  }
+}
+
+@media only screen and (min-device-height: 1024px) and (max-device-width: 1366px) and (orientation: landscape) {
+  .ScreenRotate {
+    display: none;
+  }
+  .panels {
+    display: flex;
+    position: absolute;
+    gap: 300px;
+    z-index: 3;
+    bottom: 300px;
+  }
+}
+
+@media only screen and (max-device-width: 320px) {
+  .overlay {
+    top: 130px;
   }
 }

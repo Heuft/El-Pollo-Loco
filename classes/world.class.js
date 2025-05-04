@@ -76,7 +76,7 @@ class World {
   }
 
   checkEnemyTopCollision() {
-    this.level.enemies = this.level.enemies.filter((enemy) => {
+    this.level.enemies.forEach((enemy) => {
       if (this.character.isColliding(enemy)) {
         let isFalling = this.character.speedY < 0;
 
@@ -85,13 +85,12 @@ class World {
           isFalling &&
           (enemy instanceof Chicken || enemy instanceof SmallChicken)
         ) {
-          enemy.isDead();
           this.character.speedY = +25;
           playSound("../audio/jump-sound-14839.mp3", 0.1);
-          return false;
+
+          enemy.die();
         }
       }
-      return true;
     });
   }
 
@@ -131,30 +130,38 @@ class World {
 
   checkThrowBottleCollision() {
     this.throwableObject.forEach((bottle) => {
-      this.level.enemies.forEach((enemy) => {
+      if (bottle.hasCollided) return;
+      this.level.enemies = this.level.enemies.filter((enemy) => {
         if (bottle.isColliding(enemy)) {
+          bottle.hasCollided = true;
+          if (enemy instanceof Endboss) {
+            bottle.splashY = 200;
+          }
           enemy.hit();
           playSound(
             "../audio/Chicken Scream Noise - Sound Effect for editing.mp3",
             0.1
           );
-          bottle.splash(() => {
-            this.throwableObject.splice(bottle);
-          });
+          playSound("../audio/splash-death-splash-46048.mp3", 0.05);
+          bottle.splash();
 
           if (enemy instanceof Endboss) {
             this.statusbarEndboss.setPercent(enemy.energy);
-            playSound(
-              "../audio/Chicken Scream Noise - Sound Effect for editing.mp3",
-              0.1
-            );
             if (enemy.energy <= 0) {
               this.endGame = true;
-              playSound("../audio/you-win-sequence-1-183948.mp3", 0.1);
+              playSound("../audio/you-win-sequence-1-183948.mp3", 0.05);
               pauseSound(backgroundMusic);
             }
+            return true;
           }
+          if (enemy instanceof Chicken || enemy instanceof SmallChicken) {
+            enemy.die();
+            return true;
+          }
+
+          return false;
         }
+        return true;
       });
     });
   }

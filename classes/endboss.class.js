@@ -50,7 +50,7 @@ class Endboss extends MovableObject {
     this.loadImages(this.Images_Dead);
     this.loadImages(this.Images_Attack);
     this.x = 3700;
-    this.speed = 2 + 2 * 0.75;
+    this.speed = 3;
     this.animate();
   }
 
@@ -81,7 +81,13 @@ class Endboss extends MovableObject {
         backgroundMusic.pause();
 
         setInterval(() => {
-          this.moveLeft();
+          if (this.x > world.character.x + 10) {
+            this.moveLeft();
+            this.otherDirection = false;
+          } else if (this.x < world.character.x - 30) {
+            this.moveRight();
+            this.otherDirection = true;
+          }
         }, 1000 / 60);
       }
     }, 150);

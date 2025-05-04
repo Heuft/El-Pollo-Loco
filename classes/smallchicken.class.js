@@ -2,6 +2,12 @@ class SmallChicken extends MovableObject {
   y = 360;
   height = 60;
   width = 60;
+  offset = {
+    top: -40,
+    left: -30,
+    right: -30,
+    bottom: 0,
+  };
   Images_Walking = [
     "../img/3_enemies_chicken/chicken_small/1_walk/1_w.png",
     "../img/3_enemies_chicken/chicken_small/1_walk/2_w.png",
@@ -21,14 +27,18 @@ class SmallChicken extends MovableObject {
   }
 
   animate() {
-    setInterval(() => {
-      this.moveLeft();
+    this.moveInterval = setInterval(() => {
+      if (!this.isDying) this.moveLeft();
     }, 1000 / 60);
-    setInterval(() => {
+
+    this.walkingInterval = setInterval(() => {
+      if (this.isDying) return;
       if (this.energy == 90) {
         this.playAnimation(this.Images_Dead);
         this.speed = 0;
-      } else this.playAnimation(this.Images_Walking);
+      } else {
+        this.playAnimation(this.Images_Walking);
+      }
     }, 150);
   }
 }

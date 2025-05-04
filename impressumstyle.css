@@ -1,0 +1,8 @@
+@media only screen and (max-height: 480px) {
+  body {
+    display: block;
+  }
+  body p {
+    color: black;
+  }
+}

@@ -16,7 +16,7 @@ class StatusbarEndboss extends DrawableObject {
     this.percent = percent;
     this.x = 3700;
     this.y = 20;
-    this.speed = 2 + 2 * 0.75;
+    this.speed = 3;
     this.width = 200;
     this.height = 60;
     this.animate();
@@ -40,7 +40,11 @@ class StatusbarEndboss extends DrawableObject {
         i = 0;
         hadFirstContact = true;
         setInterval(() => {
-          this.moveLeft();
+          if (this.x > world.character.x + 10) {
+            this.moveLeft();
+          } else if (this.x < world.character.x - 10) {
+            this.moveRight();
+          }
         }, 1000 / 60);
       }
     }, 150);

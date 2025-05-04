@@ -3,7 +3,8 @@ let world;
 let keyboard = new Keyboard();
 let backgroundMusic = prepareSound(
   "../audio/Western Background Music - OLD WEST MUSIC -  Ambient  Instrumental.mp3",
-  0.05
+  0.05,
+  true
 );
 let endbossThemeSound;
 
@@ -55,7 +56,7 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
-function startGame() {
+function removeStartScreen() {
   playSound("../audio/game-start-6104.mp3", 0.1);
   backgroundMusic.play();
   document.getElementById("startscreen").classList.add("hidden");
@@ -64,5 +65,9 @@ function startGame() {
   document.getElementById("panels").classList.remove("hidden");
   document.getElementById("panels").classList.add("panels");
   keyboard.touchEvent();
+}
+
+function startGame() {
+  removeStartScreen();
   init();
 }

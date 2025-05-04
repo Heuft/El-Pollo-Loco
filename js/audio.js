@@ -2,20 +2,23 @@ let isMuted = false;
 let activeSounds = [];
 
 function playSound(path, volume = 1) {
-  if (isMuted) return null;
-
   const sound = new Audio(path);
-  sound.volume = volume;
+  sound.volume = isMuted ? 0 : volume;
+  sound.dataset.originalVolume = volume;
   sound.play();
-
   activeSounds.push(sound);
-
   return sound;
 }
 
 function mutePage() {
+  isMuted = !isMuted;
+
   activeSounds.forEach((sound) => {
-    sound.muted = isMuted;
+    if (isMuted) {
+      sound.volume = 0;
+    } else {
+      sound.volume = parseFloat(sound.dataset.originalVolume) || 1;
+    }
   });
 
   updateMuteButton();
@@ -23,7 +26,6 @@ function mutePage() {
 
 function updateMuteButton() {
   const muteIcon = document.getElementById("muteIcon");
-  isMuted = !isMuted;
 
   if (isMuted) {
     muteIcon.src = "../img/mute.png";
@@ -34,8 +36,11 @@ function updateMuteButton() {
 
 function prepareSound(path, volume = 1.0, loop = false) {
   const sound = new Audio(path);
-  sound.volume = volume;
+  sound.volume = isMuted ? 0 : volume;
   sound.loop = loop;
+  sound.dataset.originalVolume = volume;
+
+  activeSounds.push(sound);
   return sound;
 }
 
