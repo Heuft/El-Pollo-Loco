@@ -3,12 +3,15 @@ class Endboss extends MovableObject {
   width = 250;
   y = 50;
   endScene = false;
+  hadFirstContact = false;
+
   Images_Walking = [
     "../img/4_enemie_boss_chicken/1_walk/G1.png",
     "../img/4_enemie_boss_chicken/1_walk/G2.png",
     "../img/4_enemie_boss_chicken/1_walk/G3.png",
     "../img/4_enemie_boss_chicken/1_walk/G4.png",
   ];
+
   Images_FirstContact = [
     "../img/4_enemie_boss_chicken/2_alert/G5.png",
     "../img/4_enemie_boss_chicken/2_alert/G6.png",
@@ -19,6 +22,7 @@ class Endboss extends MovableObject {
     "../img/4_enemie_boss_chicken/2_alert/G11.png",
     "../img/4_enemie_boss_chicken/2_alert/G12.png",
   ];
+
   Images_Hurt = [
     "img/4_enemie_boss_chicken/4_hurt/G21.png",
     "img/4_enemie_boss_chicken/4_hurt/G22.png",
@@ -41,7 +45,11 @@ class Endboss extends MovableObject {
     "img/4_enemie_boss_chicken/3_attack/G19.png",
     "img/4_enemie_boss_chicken/3_attack/G20.png",
   ];
-  hadFirstContact = false;
+
+  /**
+   * Creates an instance of the Endboss, loads all necessary images,
+   * sets initial position and starts animation.
+   */
   constructor() {
     super().loadImage(this.Images_Walking[0]);
     this.loadImages(this.Images_Walking);
@@ -55,44 +63,92 @@ class Endboss extends MovableObject {
   }
 
   /**
-   * Animate the Movement of Endboss
+   * Starts the animation loop for the Endboss and initiates tracking
+   * when the player reaches a certain point.
+   *
+   * @param {boolean} hadFirstContact - Whether the Endboss has seen the player.
    */
   animate(hadFirstContact) {
     let i = 0;
     setInterval(() => {
-      if (this.isDead()) {
-        this.speed = 0;
-        this.playAnimation(this.Images_Dead);
-        if (!this.endScene) {
-          this.endScene = true;
-          playWinEndscreen();
-        }
-      } else if (this.isHurt()) {
-        this.playAnimation(this.Images_Hurt);
-      } else if (this.x - 120 < world.character.x) {
-        this.playAnimation(this.Images_Attack);
-      } else if (i < 10) {
-        this.playAnimation(this.Images_FirstContact);
-      } else {
-        this.playAnimation(this.Images_Walking);
-      }
-      i++;
+      this.playAllAnimation(i);
 
       if (world.character.x > 3300 && !hadFirstContact) {
         i = 0;
         hadFirstContact = true;
         backgroundMusic.pause();
-
-        setInterval(() => {
-          if (this.x > world.character.x + 10) {
-            this.moveLeft();
-            this.otherDirection = false;
-          } else if (this.x < world.character.x - 30) {
-            this.moveRight();
-            this.otherDirection = true;
-          }
-        }, 1000 / 60);
+        this.handleEndbossMoves();
       }
     }, 150);
+  }
+
+  /**
+   * Plays the death animation and stops movement.
+   */
+  playDeadAnimation() {
+    this.speed = 0;
+    this.playAnimation(this.Images_Dead);
+  }
+
+  /**
+   * Triggers the end screen after the Endboss is defeated.
+   */
+  playWin() {
+    this.endScene = true;
+    playWinEndscreen();
+  }
+
+  /**
+   * Moves the Endboss to the left and sets its facing direction.
+   */
+  EndbossMoveLeft() {
+    this.moveLeft();
+    this.otherDirection = false;
+  }
+
+  /**
+   * Moves the Endboss to the right and sets its facing direction.
+   */
+  EndbossMoveRight() {
+    this.moveRight();
+    this.otherDirection = true;
+  }
+
+  /**
+   * Determines and plays the appropriate animation for the Endboss
+   * based on its current state.
+   *
+   * @param {number} i - The current animation counter index.
+   */
+  playAllAnimation(i) {
+    if (this.isDead()) {
+      this.playDeadAnimation();
+      if (!this.endScene) {
+        this.playWin();
+      }
+    } else if (this.isHurt()) {
+      this.playAnimation(this.Images_Hurt);
+    } else if (this.x - 120 < world.character.x) {
+      this.playAnimation(this.Images_Attack);
+    } else if (i < 10) {
+      this.playAnimation(this.Images_FirstContact);
+    } else {
+      this.playAnimation(this.Images_Walking);
+    }
+    i++;
+  }
+
+  /**
+   * Starts movement behavior for the Endboss to follow the player
+   * once first contact has occurred.
+   */
+  handleEndbossMoves() {
+    setInterval(() => {
+      if (this.x > world.character.x + 10) {
+        this.EndbossMoveLeft();
+      } else if (this.x < world.character.x - 30) {
+        this.EndbossMoveRight();
+      }
+    }, 1000 / 60);
   }
 }

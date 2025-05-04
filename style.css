@@ -5,6 +5,7 @@ body {
   justify-content: center;
   height: 100dvh;
   overflow: hidden;
+  margin: 0;
 }
 .bg-image {
   position: absolute;
@@ -83,7 +84,7 @@ body h1 {
 
 .overlay {
   position: absolute;
-  top: 170px;
+  top: 150px;
   left: 0;
   width: 100%;
   height: 100%;
@@ -218,7 +219,7 @@ body p {
   }
   .startimg {
     width: 100%;
-    height: 100dvh;
+    height: 100%;
   }
   #gameButtons {
     display: none;
@@ -278,7 +279,7 @@ body p {
     position: absolute;
     gap: 300px;
     z-index: 3;
-    bottom: 200px;
+    bottom: 350px;
   }
 }
 
@@ -291,7 +292,7 @@ body p {
     position: absolute;
     gap: 300px;
     z-index: 3;
-    bottom: 300px;
+    bottom: 460px;
   }
 }
 

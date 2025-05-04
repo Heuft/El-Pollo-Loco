@@ -7,55 +7,82 @@ class Keyboard {
   D = false;
 
   /**
-   * Events of Touch
+   * Initializes touch events for available on-screen buttons.
+   * Binds event listeners for movement, jumping, and throwing.
    */
   touchEvent() {
-    let btnLeft = document.getElementById("btnLeft");
-    let btnRight = document.getElementById("btnRight");
-    let btnJump = document.getElementById("btnJump");
-    let btnThrow = document.getElementById("btnThrow");
+    const btnLeft = document.getElementById("btnLeft");
+    const btnRight = document.getElementById("btnRight");
+    const btnJump = document.getElementById("btnJump");
+    const btnThrow = document.getElementById("btnThrow");
 
-    if (btnLeft) {
-      btnLeft.addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        this.Left = true;
-      });
-      btnLeft.addEventListener("touchend", (e) => {
-        e.preventDefault();
-        this.Left = false;
-      });
-    }
+    if (btnLeft) this.goLeft(btnLeft);
+    if (btnRight) this.goRight(btnRight);
+    if (btnJump) this.keyJump(btnJump);
+    if (btnThrow) this.keyThrow(btnThrow);
+  }
 
-    if (btnRight) {
-      btnRight.addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        this.Right = true;
-      });
-      btnRight.addEventListener("touchend", (e) => {
-        e.preventDefault();
-        this.Right = false;
-      });
-    }
+  /**
+   * Binds touch events to the left movement button.
+   *
+   * @param {HTMLElement} button - The button element for moving left.
+   */
+  goLeft(button) {
+    button.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.Left = true;
+    });
+    button.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this.Left = false;
+    });
+  }
 
-    if (btnJump) {
-      btnJump.addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        this.Space = true;
-      });
-      btnJump.addEventListener("touchend", (e) => {
-        e.preventDefault();
-        this.Space = false;
-      });
-    }
-    if (btnThrow) {
-      btnThrow.addEventListener("touchstart", (e) => {
-        e.preventDefault();
-        this.D = true;
-      });
-      btnThrow.addEventListener("touchend", (e) => {
-        e.preventDefault();
-        this.D = false;
-      });
-    }
+  /**
+   * Binds touch events to the right movement button.
+   *
+   * @param {HTMLElement} button - The button element for moving right.
+   */
+  goRight(button) {
+    button.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.Right = true;
+    });
+    button.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this.Right = false;
+    });
+  }
+
+  /**
+   * Binds touch events to the jump button.
+   *
+   * @param {HTMLElement} button - The button element for jumping.
+   */
+  keyJump(button) {
+    button.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.Space = true;
+    });
+    button.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this.Space = false;
+    });
+  }
+
+  /**
+   * Binds touch events to the throw button.
+   *
+   * @param {HTMLElement} button - The button element for throwing.
+   */
+  keyThrow(button) {
+    button.addEventListener("touchstart", (e) => {
+      e.preventDefault();
+      this.D = true;
+    });
+    button.addEventListener("touchend", (e) => {
+      e.preventDefault();
+      this.D = false;
+    });
   }
 }

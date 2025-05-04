@@ -7,9 +7,27 @@
   }
 }
 
+@media (max-width: 1367px) {
+  body {
+    overflow-y: auto;
+  }
+}
+
 .impCtx {
   color: white;
   background-color: rgba(128, 128, 128, 0);
   text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
     1px 1px 0 #000;
+}
+
+.impDFlex {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.impressumColumn {
+  display: flex;
+  flex-direction: column;
 }

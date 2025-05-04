@@ -3,9 +3,9 @@ class SmallChicken extends MovableObject {
   height = 60;
   width = 60;
   offset = {
-    top: -40,
-    left: -30,
-    right: -30,
+    top: -50,
+    left: -40,
+    right: -40,
     bottom: 0,
   };
   Images_Walking = [
