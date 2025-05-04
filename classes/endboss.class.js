@@ -54,6 +54,9 @@ class Endboss extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Animate the Movement of Endboss
+   */
   animate(hadFirstContact) {
     let i = 0;
     setInterval(() => {

@@ -6,3 +6,10 @@
     color: black;
   }
 }
+
+.impCtx {
+  color: white;
+  background-color: rgba(128, 128, 128, 0);
+  text-shadow: -1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000,
+    1px 1px 0 #000;
+}

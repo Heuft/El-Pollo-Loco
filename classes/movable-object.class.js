@@ -18,6 +18,11 @@ class MovableObject extends DrawableObject {
     bottom: 0,
   };
 
+  /**
+   * Checks if this object is colliding with another movable object.
+   * @param {MovableObject} mo - The other object to check collision with.
+   * @returns {boolean} True if the objects are colliding.
+   */
   isColliding(mo) {
     return (
       this.x + this.width - this.offset.right > mo.x + mo.offset.left &&
@@ -27,6 +32,9 @@ class MovableObject extends DrawableObject {
     );
   }
 
+  /**
+   * Applies damage to the object, reducing energy. Adds cooldown to prevent rapid re-hit.
+   */
   hit() {
     let now = new Date().getTime();
 
@@ -41,6 +49,9 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Increases the bottle status by 20, up to a max of 100.
+   */
   getBottle() {
     this.statusbottle += 20;
     if (this.statusbottle > 100) {
@@ -48,6 +59,9 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Decreases the bottle status by 20, down to a min of 0.
+   */
   throwBottle() {
     this.statusbottle -= 20;
     if (this.statusbottle < 0) {
@@ -55,6 +69,9 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Marks this object as dying, plays death animation, removes from enemy list after delay.
+   */
   die() {
     this.isDying = true;
     this.playAnimation(this.Images_Dead);
@@ -68,6 +85,9 @@ class MovableObject extends DrawableObject {
     }, 1000);
   }
 
+  /**
+   * Increases coin collection status by 19, up to a max of 100.
+   */
   getCoin() {
     this.statusCoin += 19;
     if (this.statusCoin > 100) {
@@ -75,15 +95,27 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Checks if the object's energy has dropped to 0.
+   * @returns {boolean} True if the object is dead.
+   */
   isDead() {
     return this.energy == 0;
   }
+
+  /**
+   * Checks if the object was recently hit and is still in the hurt state.
+   * @returns {boolean} True if within 1 second of last hit.
+   */
   isHurt() {
     let timepassed = new Date().getTime() - this.lastHit;
     timepassed = timepassed / 1000;
     return timepassed < 1;
   }
 
+  /**
+   * Applies gravity effect by decreasing vertical speed and updating y-position at intervals.
+   */
   applyGravity() {
     setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -93,17 +125,16 @@ class MovableObject extends DrawableObject {
           if (this.y >= 225) {
             this.y = 225;
             this.speedY = 0;
-
-            if (this instanceof Character && !this.hasLandedOnce) {
-              this.hasLandedOnce = true;
-              this.loadImage("../img/2_character_pepe/2_walk/W-21.png");
-            }
           }
         }
       }
     }, 1000 / 25);
   }
 
+  /**
+   * Determines whether the object is above the ground.
+   * @returns {boolean} True if above ground level.
+   */
   isAboveGround() {
     if (this instanceof ThrowableObject) {
       return true;
@@ -112,10 +143,18 @@ class MovableObject extends DrawableObject {
     }
   }
 
+  /**
+   * Makes the object jump by setting an upward vertical speed and playing a sound.
+   */
   jump() {
     this.speedY = 17;
     playSound("../audio/Cartoon Jump Sound Effect.mp3", 0.01);
   }
+
+  /**
+   * Plays a looping animation from the provided image list.
+   * @param {string[]} images - Array of image paths used for animation.
+   */
   playAnimation(images) {
     let i = this.currentImage % images.length;
     let path = images[i];

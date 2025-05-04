@@ -1,3 +1,7 @@
+/**
+ * Requests fullscreen mode for the element with the ID 'fullscreen'.
+ * Supports various browser-specific implementations.
+ */
 function enterFullscreen() {
   let fullscreen = document.getElementById("fullscreen");
   if (fullscreen.requestFullscreen) {
@@ -11,6 +15,9 @@ function enterFullscreen() {
   }
 }
 
+/**
+ * Exits fullscreen mode using the appropriate method depending on the browser.
+ */
 function exitFullscreen() {
   if (document.exitFullscreen) {
     document.exitFullscreen();
@@ -23,6 +30,11 @@ function exitFullscreen() {
   }
 }
 
+/**
+ * Toggles fullscreen mode on and off.
+ * If no element is currently in fullscreen, it will enter fullscreen.
+ * Otherwise, it exits fullscreen mode.
+ */
 function toggleFullscreen() {
   if (
     !document.fullscreenElement &&

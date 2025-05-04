@@ -8,12 +8,19 @@ let backgroundMusic = prepareSound(
 );
 let endbossThemeSound;
 
+/**
+ * Initializes the game by getting the canvas element,
+ * initializing the level, and creating a new World instance.
+ */
 function init() {
   canvas = document.getElementById("canvas");
   initLevel();
   world = new World(canvas, keyboard);
 }
 
+/**
+ * Listens for keydown events and updates the keyboard state accordingly.
+ */
 window.addEventListener("keydown", (e) => {
   if (e.keyCode == 39) {
     keyboard.Right = true;
@@ -35,6 +42,9 @@ window.addEventListener("keydown", (e) => {
   }
 });
 
+/**
+ * Listens for keyup events and resets the keyboard state.
+ */
 window.addEventListener("keyup", (e) => {
   if (e.keyCode == 39) {
     keyboard.Right = false;
@@ -56,6 +66,10 @@ window.addEventListener("keyup", (e) => {
   }
 });
 
+/**
+ * Removes the start screen UI and begins background music.
+ * Also prepares the game canvas and buttons for gameplay.
+ */
 function removeStartScreen() {
   playSound("../audio/game-start-6104.mp3", 0.1);
   backgroundMusic.play();
@@ -67,6 +81,9 @@ function removeStartScreen() {
   keyboard.touchEvent();
 }
 
+/**
+ * Starts the game by removing the start screen and initializing the world.
+ */
 function startGame() {
   removeStartScreen();
   init();

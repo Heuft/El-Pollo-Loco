@@ -1,6 +1,9 @@
 class ThrowableObject extends MovableObject {
   splashY = 350;
 
+  /**
+   * Array of image paths used for the splash animation.
+   */
   Images_Splash = [
     "../img/6_salsa_bottle/bottle_rotation/bottle_splash/1_bottle_splash.png",
     "../img/6_salsa_bottle/bottle_rotation/bottle_splash/2_bottle_splash.png",
@@ -10,6 +13,11 @@ class ThrowableObject extends MovableObject {
     "../img/6_salsa_bottle/bottle_rotation/bottle_splash/6_bottle_splash.png",
   ];
 
+  /**
+   * Creates a new throwable bottle object and initializes its behavior.
+   * @param {number} x - The initial horizontal position.
+   * @param {number} y - The initial vertical position.
+   */
   constructor(x, y) {
     super().loadImage("../img/6_salsa_bottle/salsa_bottle.png");
     this.loadImages(this.Images_Splash);
@@ -21,11 +29,15 @@ class ThrowableObject extends MovableObject {
     this.animate();
   }
 
+  /**
+   * Applies horizontal movement and gravity to simulate throwing the object.
+   * Direction depends on the player's current facing direction.
+   */
   throw() {
     this.speedY = 18;
     this.applyGravity();
 
-    const throwDirectionLeft = world.character.otherDirection;
+    let throwDirectionLeft = world.character.otherDirection;
 
     this.throwInterval = setInterval(() => {
       if (throwDirectionLeft) {
@@ -36,6 +48,9 @@ class ThrowableObject extends MovableObject {
     }, 25);
   }
 
+  /**
+   * Applies gravity physics by modifying the vertical position and speed.
+   */
   applyGravity() {
     this.gravityInterval = setInterval(() => {
       if (this.isAboveGround() || this.speedY > 0) {
@@ -45,6 +60,9 @@ class ThrowableObject extends MovableObject {
     }, 1000 / 25);
   }
 
+  /**
+   * Triggers the splash animation, stops movement, and removes the object after animation.
+   */
   splash() {
     clearInterval(this.gravityInterval);
     clearInterval(this.throwInterval);
@@ -63,6 +81,9 @@ class ThrowableObject extends MovableObject {
     }, 1000);
   }
 
+  /**
+   * Continuously plays the splash animation while the object is splashing.
+   */
   animate() {
     this.animationInterval = setInterval(() => {
       if (this.isSplashing) {

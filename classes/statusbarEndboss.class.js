@@ -23,16 +23,18 @@ class StatusbarEndboss extends DrawableObject {
     this.setPercent(this.percent);
   }
 
-  moveLeft() {
-    this.x -= this.speed;
-  }
-
+  /**
+   * Set the Percent of Statusbar
+   */
   setPercent(percent) {
     this.percent = percent;
     let path = this.Images_StatusBoss[this.resolveImageIndex()];
     this.img = this.imageCache[path];
   }
 
+  /**
+   * Animate Statusbar of Endboss
+   */
   animate(hadFirstContact) {
     let i = 0;
     setInterval(() => {
@@ -50,6 +52,9 @@ class StatusbarEndboss extends DrawableObject {
     }, 150);
   }
 
+  /**
+   * Index of Statusbar Endboss.
+   */
   resolveImageIndex() {
     if (this.percent == 100) {
       return 5;

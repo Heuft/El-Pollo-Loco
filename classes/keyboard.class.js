@@ -6,6 +6,9 @@ class Keyboard {
   Up = false;
   D = false;
 
+  /**
+   * Events of Touch
+   */
   touchEvent() {
     let btnLeft = document.getElementById("btnLeft");
     let btnRight = document.getElementById("btnRight");
