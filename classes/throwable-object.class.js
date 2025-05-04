@@ -25,8 +25,10 @@ class ThrowableObject extends MovableObject {
     this.speedY = 18;
     this.applyGravity();
 
+    const throwDirectionLeft = world.character.otherDirection;
+
     this.throwInterval = setInterval(() => {
-      if (world.character.otherDirection) {
+      if (throwDirectionLeft) {
         this.x -= 8;
       } else {
         this.x += 8;
