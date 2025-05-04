@@ -50,6 +50,7 @@ function mutePage() {
   });
 
   updateMuteButton();
+  document.activeElement.blur();
 }
 
 /**
